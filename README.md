@@ -1,4 +1,4 @@
-# Tl13Compiler
+# TL13Compiler
 *Compiler Design Course Project*
 
 A complete compiler for a TL13 from scratch using Flex and Bison to implement lexical analysis, recursive descent parsing, and abstract syntax tree generation.
