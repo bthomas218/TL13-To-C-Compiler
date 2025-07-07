@@ -1,5 +1,8 @@
 # Tl13Compiler
-A project which I did for my compiler design course at the University of Texas at Dallas
+*Compiler Design Course Project*
+
+A complete compiler for a TL13 from scratch using Flex and Bison to implement lexical analysis, recursive descent parsing, and abstract syntax tree generation.
+Can translate TL13 into equivalent C code with support for expressions, control flow, and function calls, along with symbol table handling and semantic analysis to catch compile-time errors.
 
 ## Language Syntax
 ### Comments
