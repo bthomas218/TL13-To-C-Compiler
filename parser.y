@@ -1,9 +1,3 @@
-    /*
-    * @author: Brady Thomas
-    * @class: CS 4386
-    * @section: .501
-    */
-
 %code requires {
     #include "tree.h"
 }
@@ -160,4 +154,5 @@ int main(void) {
 int yywrap() {
     return 1;
 }
+
 
