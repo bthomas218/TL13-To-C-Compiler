@@ -42,10 +42,11 @@ false|true    { yylval.node = create_node("BOOLLIT", yytext, yylineno, 0); retur
 [A-Z][A-Z0-9]* { yylval.node = create_node("IDENT", yytext, yylineno, 0); return IDENT; }
 
     /* Comments */
-%[^\n]*        { /* treat comment as whitespace */ }
+%[^\n]*        { }
 
     /* Whitespace */
 [ \t\n\r]+      { }
 %%
+
 
 
