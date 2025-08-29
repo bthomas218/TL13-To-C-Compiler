@@ -50,6 +50,48 @@ int main() {
 }
 ```
 
+## Compile Time Error Checking
+### *Input in TL13*
+```tl13
+program
+   var SMALLER as int ;
+   var BIGGER as int ;
+   var TEMP as int ;
+begin
+   BIGGER := readInt ;
+   SMALLER := readInt ;
+
+   if 13 then
+      TEMP := SMALLER ;
+      TEMP1 := 2147483648 ;
+      SMALLER := BIGGER ;
+      BIGGER := TEMP ;
+   end ;
+
+   while 12 do
+      BIGGER := BIGGER - SMALLER ;
+
+      if SMALLER > BIGGER then
+         TEMP := SMALLER ;
+         SMALLER := BIGGER ;
+         BIGGER := TEMP ;
+      end ;
+   end ;
+   writeInt BIGGER ;
+end
+```
+
+### *Output in Error Log*
+```pgsql
+ERROR[line 9]: Expression guarding If Statement must be boolean, got 'int'
+ERROR[line 11]: Undeclared Variable 'TEMP1'
+ERROR[line 11]: Type mismatch in assignment to 'TEMP1'. Expected 'undefined' but got 'int'
+ERROR[line 11]: Integer literal '2147483648' out of range (must be 0..2147483647)
+ERROR[line 16]: Expression guarding While Statement must be boolean, got 'int'
+
+Compilation failed with 5 semantic error(s).
+```
+
 ## Requirements
 - GCC
 - Flex
@@ -62,4 +104,5 @@ cd tl13-compiler
 chmod +x run.sh
 ./run.sh
 ```
+Write your own programs in TL13 in the input.txt file
 
