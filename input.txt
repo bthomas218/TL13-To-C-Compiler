@@ -1,4 +1,5 @@
-program % The input program featured in README
+% The input program featured in the README
+program 
     var X as int ;
     begin
         X := readInt ;
