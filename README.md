@@ -51,6 +51,8 @@ int main() {
 
 ## Requirements
 - GCC or Clang
+- Flex
+- Bison
 - [uthash](https://troydhanson.github.io/uthash/)
 ## Build and Run
 ```bash
