@@ -1,0 +1,11 @@
+program % The input program featured in README
+    var X as int ;
+    begin
+        X := readInt ;
+        if X > 0 then
+            writeInt X ;
+        else
+            writeInt 0;
+        end ;
+    end ;
+end
