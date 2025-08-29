@@ -1,10 +1,10 @@
-# TL13Compiler
-*Compiler Design Course Project*
+# TL13 To C Compiler
+*Compiler Design Project*
 
 A complete compiler for a TL13 from scratch using Flex and Bison to implement lexical analysis, recursive descent parsing, and abstract syntax tree generation.
-Can translate TL13 into equivalent C code with support for expressions, control flow, along with symbol table handling and semantic analysis to catch compile-time errors.
+Can translate TL13 into presentable equivalent C code with support for expressions, control flow, symbol table handling, and semantic analysis to catch compile-time errors.
 
-## Language Syntax
+# Language Specifications
 ### Comments
 The first occurrence of the character "%" on a line denotes the start of a comment that extends to the end of that line. For purposes of determining the lexical elements of the source file, the entire comment will be treated as if it were whitespace.
 
