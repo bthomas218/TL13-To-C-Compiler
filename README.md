@@ -50,7 +50,7 @@ int main() {
 ```
 
 ## Requirements
-- GCC or Clang
+- GCC
 - Flex
 - Bison
 - [uthash](https://troydhanson.github.io/uthash/)
