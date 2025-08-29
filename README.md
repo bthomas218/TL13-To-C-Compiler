@@ -1,9 +1,5 @@
 # TL13 -> C Compiler
-A compiler for TL13 → C with semantic analysis, built in Flex & Bison.
-
-## Description
-A full compiler for the TL13 toy language — built from scratch with Flex & Bison, translating TL13 into valid, human-readable C with semantic error checking.
-Implements **lexical analysis, parsing, semantic checks, and C code generation** 
+A full compiler for the TL13 toy language — built from scratch with Flex & Bison that implements **lexical analysis, parsing, semantic checks, and C code generation** 
 
 This project translates TL13 source code into valid C, handling:
 - Expressions & arithmetic
