@@ -56,15 +56,15 @@
 %%
 program:
     PROGRAM declarations KEYWORD_BEGIN statementSequence END {
-        $$ = create_node("program", NULL, 5, $1, $2, $3, $4, $5);
+        $$ = create_node("program", NULL, $1->line_number, 5, $1, $2, $3, $4, $5);
         root = $$;
     }
     ;
 
 declarations:
-    /* empty */ { $$ = create_node("declarations", NULL, 0); }
+    /* empty */ { $$ = create_node("declarations", NULL, @$.first_line, 0); }
     | VAR IDENT AS type SC declarations {
-        $$ = create_node("declarations", NULL, 6, $1, $2, $3, $4, $5, $6);
+        $$ = create_node("declarations", NULL, $1->line_number, 6, $1, $2, $3, $4, $5, $6);
     }
     ;
 
@@ -74,9 +74,9 @@ type:
     ;
 
 statementSequence:
-    /* empty */ { $$ = create_node("statementSequence", NULL, 0); }
+    /* empty */ { $$ = create_node("statementSequence", NULL, @$.first_line, 0); }
     | statement SC statementSequence {
-        $$ = create_node("statementSequence", NULL, 3, $1, $2, $3);
+        $$ = create_node("statementSequence", NULL, $1->line_number, 3, $1, $2, $3);
     }
     ;
 
@@ -89,44 +89,56 @@ statement:
 
 assignment:
     IDENT ASGN expression {
-        $$ = create_node("assignment", NULL, 3, $1, $2, $3);
+        $$ = create_node("assignment", NULL, $1->line_number, 3, $1, $2, $3);
     }
     | IDENT ASGN READINT {
-        $$ = create_node("assignment", NULL, 3, $1, $2, $3);
+        $$ = create_node("assignment", NULL, $1->line_number, 3, $1, $2, $3);
     }
     ;
 
 ifStatement:
     IF expression THEN statementSequence elseClause END {
-         $$ = create_node("if", NULL, 6, $1, $2, $3, $4, $5, $6);
+        $$ = create_node("if", NULL, $1->line_number, 6, $1, $2, $3, $4, $5, $6);
     }
     ;
 
 elseClause:
-    /* empty */ { $$ = create_node("else", NULL, 0); }
-    | ELSE statementSequence { $$ = create_node("else", NULL, 2, $1, $2); }
+    /* empty */ { $$ = create_node("else", NULL, @$.first_line, 0); }
+    | ELSE statementSequence {
+        $$ = create_node("else", NULL, $1->line_number, 2, $1, $2);
+    }
     ;
 
 whileStatement:
-    WHILE expression DO statementSequence END { $$ = create_node("while", NULL, 5, $1, $2, $3, $4, $5); }
+    WHILE expression DO statementSequence END {
+        $$ = create_node("while", NULL, $1->line_number, 5, $1, $2, $3, $4, $5);
+    }
     ;
 
 writeInt:
-    WRITEINT expression { $$ = create_node("writeInt", NULL, 2, $1, $2); }
+    WRITEINT expression {
+        $$ = create_node("writeInt", NULL, $1->line_number, 2, $1, $2);
+    }
     ;
 
 expression:
     simpleExpression { $$ = $1; }
-    | simpleExpression OP4 simpleExpression { $$ = create_node("expression", NULL, 3, $1, $2, $3); }
+    | simpleExpression OP4 simpleExpression {
+        $$ = create_node("expression", NULL, $2->line_number, 3, $1, $2, $3);
+    }
     ;
 
 simpleExpression:
-    term OP3 term { $$ = create_node("simpleExpr", NULL, 3, $1, $2, $3); }
+    term OP3 term {
+        $$ = create_node("simpleExpr", NULL, $2->line_number, 3, $1, $2, $3);
+    }
     | term { $$ = $1; }
     ;
 
 term:
-    factor OP2 factor {  $$ = create_node("term", NULL, 3, $1, $2, $3); }
+    factor OP2 factor {
+        $$ = create_node("term", NULL, $2->line_number, 3, $1, $2, $3);
+    }
     | factor { $$ = $1; }
     ;
 
@@ -134,25 +146,31 @@ factor:
     IDENT { $$ = $1; }
     | NUM { $$ = $1; }
     | BOOLLIT { $$ = $1; }
-    | LP expression RP { $$ = create_node("factor", NULL, 3, $1, $2, $3); }
+    | LP expression RP {
+        $$ = create_node("factor", NULL, $1->line_number, 3, $1, $2, $3);
+    }
     ;
-
 %%
 
+int errors = 0;
+
 int yyerror(char *s) {
-    printf("Error : %s\n",s);
-    return 0;
+     fprintf(stderr, "Error: %s\n", s);
+     return 0;
 }
+
+
 int main(void) {
       /* yydebug = 1; */
       yyparse();
-      printf("PARSING SUCCESS\n");
-      print_tree(root, 0);  // for debugging
+      /* printf("PARSING SUCCESS\n"); */
+      /* print_tree(root, 0);  */
+      generate_code(root);
+      clean_up();
       return 0;
 }
 
 int yywrap() {
     return 1;
 }
-
 
