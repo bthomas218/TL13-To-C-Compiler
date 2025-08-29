@@ -7,7 +7,8 @@ This project translates TL13 source code into valid C, handling:
 - Control flow (`if`, `while`)
 - Symbol tables & type checking
 - Built-in procedures (`readInt`, `writeInt`)
-Check out the language specifications [here](https://github.com/bthomas218/TL13-To-C-Compiler/blob/main/language-specs.md)
+
+See [language specifications](https://github.com/bthomas218/TL13-To-C-Compiler/blob/main/language-specs.md) for full TL13 grammar, lexical rules, and semantics.
 
 ## Example
 ### *Input in TL13*
