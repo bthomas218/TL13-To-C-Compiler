@@ -2,7 +2,7 @@
 *Compiler Design Project*
 
 A complete compiler for a TL13 from scratch using Flex and Bison to implement lexical analysis, recursive descent parsing, and abstract syntax tree generation.
-Can translate TL13 into presentable equivalent C code with support for expressions, control flow, symbol table handling, and semantic analysis to catch compile-time errors.
+Can translate TL13 into presentable equivalent C code with support for expressions, control flow, function calls for TL13's built-in procedures, symbol table handling, and semantic analysis to catch compile-time errors.
 
 # Language Specifications
 ### Comments
@@ -132,3 +132,5 @@ Assignments are a kind of statement rather than a kind of operator. The ":=" key
 ### Built-in Procedures
 Core TL13 does not support user-defined functions or procedures, but it does support one built-in procedures "writeInt" that outputs an integer and a new-line to the console (respectively), and one user-defined function, "readInt" that reads an integer from the console. The syntax for these is hard-coded into TL13's BNF grammar.
 
+# Build Instructions
+To build the project copy the files to a directory in your terminal, and use the included run.sh program to compile TL13 code in a file titled "*input.txt*". Also requires uthash from https://troydhanson.github.io/uthash/ 
