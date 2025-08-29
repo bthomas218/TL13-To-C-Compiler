@@ -19,6 +19,28 @@ program
 end
 ```
 ```C
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+int readInt() {
+	int x;
+	scanf("%d", &x);
+	return x;
+}
+
+int X;
+
+int main() {
+	X = readInt();
+	
+	if (X > 0) {
+		printf("%d\n", X);
+	} else {
+		printf("%d\n", 0);
+	}
+	return 0;
+}
 ```
 
 
