@@ -107,3 +107,7 @@ chmod +x run.sh
 ```
 Write your own programs in TL13 in the input.txt file
 
+## What I learned
+- Implemented a full compiler pipeline (lexer → parser → semantic analysis → codegen).  
+- Hands-on with **Flex**, **Bison**, and AST construction.  
+- Deepened understanding of type systems, symbol tables, and control-flow lowering.  
