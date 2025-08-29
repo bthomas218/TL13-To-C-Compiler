@@ -1,10 +1,15 @@
-# TL13 To C Compiler
-*Compiler Design Project*
+# TL13 -> C Compiler
+A compiler built from scratch for the TL13 toy language.  
+Implements **lexical analysis, parsing, semantic checks, and C code generation** using Flex and Bison.  
 
-A complete compiler for a TL13 from scratch using Flex and Bison to implement lexical analysis, recursive descent parsing, and abstract syntax tree generation.
-Can translate TL13 into presentable equivalent C code with support for expressions, control flow, function calls for TL13's built-in procedures, symbol table handling, and semantic analysis to catch compile-time errors.
+This project translates TL13 source code into valid C, handling:
+- Expressions & arithmetic
+- Control flow (`if`, `while`)
+- Symbol tables & type checking
+- Built-in procedures (`readInt`, `writeInt`)
 
 ## Example
+### *Input in TL13*
 ```tl13
 program
     var X as int ;
@@ -18,6 +23,7 @@ program
     end ;
 end
 ```
+### *Output in C*
 ```C
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,6 +49,14 @@ int main() {
 }
 ```
 
+## Requirements
+- GCC or Clang
+- [uthash](https://troydhanson.github.io/uthash/)
+## Build and Run
+```bash
+git clone https://github.com/bthomas218/TL13-To-C-Compiler
+cd tl13-compiler
+chmod +x run.sh
+./run.sh
+```
 
-# Build Instructions
-To build the project copy the files to a directory in your terminal, and use the included run.sh program to compile TL13 code in a file titled "*input.txt*". Also requires uthash from https://troydhanson.github.io/uthash/ 
